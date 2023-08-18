@@ -11,7 +11,21 @@ public class ThreadLocalLogTrace implements LogTrace{
     private static final String COMPLETE_PREFIX = "<--";
     private static final String EX_PREFIX = "<X-";
 
-    private ThreadLocal<TraceId> traceIdHolder = new ThreadLocal<>(); // traceId 동기화, 동시성 이슈 해결
+    private ThreadLocal<TraceId> traceIdHolder = new ThreadLocal<>(); // traceId 동기화, 동시성 이슈 해결 // 내부에 조그마한 데이터 베이스가 있다고 생각하면 편할 듯 ..?
+    // private T setInitialValue() {
+    //        T value = initialValue();
+    //        Thread t = Thread.currentThread();
+    //        ThreadLocalMap map = getMap(t);
+    //        if (map != null) {
+    //            map.set(this, value);
+    //        } else {
+    //            createMap(t, value);
+    //        }
+    //        if (this instanceof TerminatingThreadLocal) {
+    //            TerminatingThreadLocal.register((TerminatingThreadLocal<?>) this);
+    //        }
+    //        return value;
+    //    } 이런식으로 저장된다.
 
 
     @Override
