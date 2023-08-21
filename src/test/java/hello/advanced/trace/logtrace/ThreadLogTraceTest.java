@@ -1,7 +1,5 @@
 package hello.advanced.trace.logtrace;
 
-import hello.advanced.logtrace.FieldLogTrace;
-import hello.advanced.logtrace.ThreadLocalLogTrace;
 import hello.advanced.trace.TraceStatus;
 import org.junit.jupiter.api.Test;
 
