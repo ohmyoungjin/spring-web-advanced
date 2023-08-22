@@ -28,7 +28,7 @@ public class OrderRepositoryV4 {
 
     }
 
-    private void sleep(int millis) {
+    private void sleep(int millis) { // 이 부분은 try catch 구문이 들어가게 되면 지저분해져서 따로 함수로 뺐다
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {

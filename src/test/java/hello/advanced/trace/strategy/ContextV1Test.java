@@ -1,0 +1,72 @@
+package hello.advanced.trace.strategy;
+
+import hello.advanced.trace.strategy.code.strategy.ContextV1;
+import hello.advanced.trace.strategy.code.strategy.Strategy;
+import hello.advanced.trace.strategy.code.strategy.StrategyLogic1;
+import hello.advanced.trace.strategy.code.strategy.StrategyLogic2;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+
+@Slf4j
+public class ContextV1Test {
+
+    @Test
+    void strategyV0() {
+        logic1();
+        logic2();
+    }
+
+    private void logic1() {
+        long startTime = System.currentTimeMillis();
+        //비지니스 로직 실행
+        log.info("비지니스 로직1 실행");
+        //비지니스 로직 종료
+        long endTime = System.currentTimeMillis();
+        long resultTime = endTime - startTime;
+        log.info("resultTime={}", resultTime);
+
+    }
+
+    private void logic2() {
+        long startTime = System.currentTimeMillis();
+        //비지니스 로직 실행
+        log.info("비지니스 로직2 실행");
+        //비지니스 로직 종료
+        long endTime = System.currentTimeMillis();
+        long resultTime = endTime - startTime;
+        log.info("resultTime={}", resultTime);
+    }
+
+    /**
+     * 의존성 주입을 통한 전략 패턴 사용
+     */
+    @Test
+    void strategyV1() {
+        StrategyLogic1 strategyLogic1 = new StrategyLogic1();
+        ContextV1 contextV1 = new ContextV1(strategyLogic1); //의존성 주입
+        contextV1.execute();
+
+        StrategyLogic2 strategyLogic2 = new StrategyLogic2();
+        ContextV1 contextV2 = new ContextV1(strategyLogic2); //의존성 주입
+        contextV2.execute();
+    }
+
+    /**
+     * 전략 패턴 익명 내부 클레스 사용
+     */
+    @Test
+    void strategyV2() {
+        new ContextV1(new Strategy() {
+            @Override
+            public void call() {
+                log.info("로직실행!");
+            }
+        }).execute();
+
+        //lambda
+        //lambda 사용하기 위해선 인터페이스 안에 메서드가 한 개만 있어야 한다.
+        new ContextV1(() -> {
+            log.info("로직실행!2");
+        }).execute();
+    }
+}
