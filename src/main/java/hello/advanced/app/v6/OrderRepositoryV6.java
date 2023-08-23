@@ -11,8 +11,6 @@ public class OrderRepositoryV6 {
 
     private final TraceTemplate template;
 
-
-
     public void save(String itemId) {
 
 

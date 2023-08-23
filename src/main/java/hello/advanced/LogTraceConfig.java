@@ -19,4 +19,9 @@ public class LogTraceConfig {
     public LogTrace logTrace() {
         return new ThreadLocalLogTrace();
     }
+
+    @Bean
+    public TraceTemplate traceTemplate() {
+        return new TraceTemplate(logTrace());
+    }
 }

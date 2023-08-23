@@ -4,7 +4,7 @@ import hello.advanced.trace.TraceStatus;
 import hello.advanced.trace.logtrace.LogTrace;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class TraceTemplate {
 
     private final LogTrace trace;
